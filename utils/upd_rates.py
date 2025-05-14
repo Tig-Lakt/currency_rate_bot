@@ -1,5 +1,6 @@
 import os
 import sys
+import asyncio
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_path)
@@ -17,3 +18,7 @@ async def update_currency_rates_in_redis():
     for pair, rate in rates.items():
         REDIS_CONN.setex(pair, 17700, str(rate))
     print("Курсы валют в Redis обновлены.")
+
+
+if __name__ == "__main__":
+    asyncio.run(update_currency_rates_in_redis())
