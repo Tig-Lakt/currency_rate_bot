@@ -4,15 +4,19 @@
 
 Вам необходимо создать свой собственный файл .env в корневой директории проекта. Используйте следующий пример в качестве шаблона:
 
+###телеграм-токен бота###
 TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'
-REDIS_HOST = 'redis'
-REDIS_PORT = 6379
-REDIS_DB = 0
+###Данные дляподключения к PostgreSQL###
+DB_HOST = 'host'
+DB_PORT = 'port'
+DB_NAME = 'database_name'
+DB_USER = 'user'
+DB_PASSWORD = 'password'
 ##############################################################################################################
-Необходимо добавить команду запуска по cron, для обновления курсов популярных пар в Redis, командой:
-0 */3 * * * docker exec currency_rate_bot-app-1 bash -c "cd utils && /usr/local/bin/python3 upd_rates.py"
+Необходимо добавить команду запуска по cron, для обновления цен:
+* */1 * * * docker exec wb_price_bot_serv-bot-1 bash -c "cd parser && /usr/local/bin/python3 get_price.py"
 ##############################################################################################################
-Для запуска проекта клонируйте репозиторий и запустите файл docker-compose.yml командой:     docker-compose up -d --build
+Для запуска проекта клонируйте репозиторий и запустите файл docker-compose.yml командой:     docker-compose up -d
 ##############################################################################################################
 
-Рабочая версия бота в telegram - @currency_analytics_bot
+Рабочая версия бота в telegram - @CheckWBPriceBot
